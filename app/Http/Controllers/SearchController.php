@@ -19,4 +19,9 @@ class SearchController extends Controller
     }
         return response()->json(['users'=> $users]);
     }
+
+    public function user(User $user): JsonResponse
+    {
+        return response()->json($user);
+    }
 }
