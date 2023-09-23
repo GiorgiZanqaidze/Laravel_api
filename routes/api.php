@@ -22,3 +22,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/post-messages', [MessageController::class, 'store'])->name('message.post');
 });
+
+
+

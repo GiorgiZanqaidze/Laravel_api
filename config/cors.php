@@ -21,7 +21,7 @@ return [
 
     'allowed_origins' => ['*'],
 
-    'allowed_origins_patterns' => [env('FRONT_END_URL')],
+    'allowed_origins_patterns' => [env('FRONT_END_URL'), env('FRONT_END_URL_ANGULAR')],
 
     'allowed_headers' => ['*'],
 
