@@ -20,7 +20,9 @@ class MessageController extends Controller
         })->orWhere(function ($query) use ($senderId, $receiverId) {
             $query->where('sender_id', $receiverId)
                 ->where('receiver_id', $senderId);
-        })->with('sender', 'receiver')->get();
+        })
+            ->orderBy('created_at', 'asc')
+            ->with('sender', 'receiver')->get();
 
         // You can return the messages or pass them to a view
         return response()->json(['messages' => $messages]);
