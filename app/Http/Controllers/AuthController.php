@@ -50,8 +50,6 @@ class AuthController extends Controller
         return response()->json(['message' => 'Log out'], 200);
     }
 
-
-
     public function getUser(Request $request) {
         return $request->user();
     }
