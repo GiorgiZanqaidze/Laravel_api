@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Cassandra\Exception\ValidationException;
 use GuzzleHttp\Promise\Create;
 use http\Env\Response;
 use Illuminate\Http\JsonResponse;
@@ -35,13 +36,14 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return 'valid';
+            return response()->json(['message'=> 'Success'], 201);
         }
-
         return response()->json(['message'=> 'Unauthorized user'], 401);
     }
+
 
     public function logout(Request $request): JsonResponse
     {
