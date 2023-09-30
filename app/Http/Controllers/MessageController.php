@@ -24,7 +24,6 @@ class MessageController extends Controller
             ->orderBy('created_at', 'asc')
             ->with('sender', 'receiver')->get();
 
-        // You can return the messages or pass them to a view
         return response()->json(['messages' => $messages]);
     }
 
