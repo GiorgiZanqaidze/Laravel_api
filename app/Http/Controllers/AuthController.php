@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Cassandra\Exception\ValidationException;
-use GuzzleHttp\Promise\Create;
-use http\Env\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,11 +34,13 @@ class AuthController extends Controller
         ]);
 
 
+
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return response()->json(['message'=> 'Success'], 201);
+            return response()->json(['user'=> Auth::user()->only(['email', 'name', "id"])], 201);
         }
-        return response()->json(['message'=> 'Unauthorized user'], 401);
+        return response()->json(['message'=> 'Unauthorized user', 'ERROR' => "Email or password is invalid"], 401);
     }
 
 
